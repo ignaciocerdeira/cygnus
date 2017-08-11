@@ -8,12 +8,12 @@ import org.springframework.stereotype.Component;
 public class RuntimeUtil implements ApplicationListener<EmbeddedServletContainerInitializedEvent>{
 
 	private static int port;
-	
+
 	@Override
 	public void onApplicationEvent(EmbeddedServletContainerInitializedEvent event) {
 		port = event.getEmbeddedServletContainer().getPort();
 	}
-	
+
 	public static int getPort(){
 		return port;
 	}

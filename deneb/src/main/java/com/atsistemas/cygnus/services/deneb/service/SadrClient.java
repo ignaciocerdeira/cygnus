@@ -14,22 +14,23 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 public class SadrClient {
 
 	private static Logger logger = LoggerFactory.getLogger(SadrClient.class);
-	
+
 	private String pingUrl;
-	
+
 	@Autowired
 	private RestTemplate restTemplate;
 
 	@HystrixCommand(fallbackMethod="retrieveFallbackPingSadr")
 	public PingResponse pingSadr(PingRequest pingRequest){
-		
-		logger.debug("--> pingSadr received - id: {} - content: {}", pingRequest.getId(), pingRequest.getMessage());
-		logger.debug("--> sadr endpoint: {}",pingUrl);
-		return restTemplate.postForObject(pingUrl, pingRequest, PingResponse.class);
+
+		logger.debug("--> [SadrClient] pingSadr received - id: {} - content: {}", pingRequest.getId(), pingRequest.getMessage());
+		logger.debug("--> [SadrClient] sadr endpoint: {}",pingUrl);
+		PingResponse ping = restTemplate.postForObject(pingUrl, pingRequest, PingResponse.class);
+		return ping;
 	}
-	
+
 	public PingResponse retrieveFallbackPingSadr(PingRequest pingRequest){
-		return new PingResponse("Error pinging sadr. This is a fallback message");
+		return new PingResponse("[SadrClient] Error pinging sadr. This is a fallback message");
 	}
 
 	public void setPingUrl(String pingUrl) {

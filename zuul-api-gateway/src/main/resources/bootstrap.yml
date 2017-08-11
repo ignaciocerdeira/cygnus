@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: edge-service
+  cloud:
+    config:
+      failFast: true
+      uri: http://config-server:8888

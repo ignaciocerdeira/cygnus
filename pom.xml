@@ -15,5 +15,7 @@
 		<module>admin-server</module>
 		<module>deneb</module>
 		<module>sadr</module>
+		<module>user-model</module>
+		<module>zuul-api-gateway</module>
 	</modules>
 </project>

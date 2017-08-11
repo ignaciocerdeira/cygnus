@@ -25,7 +25,7 @@ import io.swagger.annotations.ApiResponses;
 public class SadrController {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 
 	@RequestMapping(method = RequestMethod.POST, value = "ping/")
 	@ApiOperation(value = "ping", nickname = "ping", response = PingResponse.class)
@@ -36,7 +36,7 @@ public class SadrController {
 	public PingResponse ping(HttpServletRequest request,
 			@ApiParam(value = "request", required = true) @RequestBody(required = true) PingRequest pingRequest) {
 
-		logger.debug("--> ping received - id: {} - message: {}", pingRequest.getId(), pingRequest.getMessage());
-		return new PingResponse("Hello from Sadr on port: " + RuntimeUtil.getPort());
+		logger.debug("--> [SadrController] ping received - id: {} - message: {}", pingRequest.getId(), pingRequest.getMessage());
+		return new PingResponse("[SadrController] Hello from Sadr on port: " + RuntimeUtil.getPort());
 	}
 }
